@@ -1,0 +1,26 @@
+$return_html = '<h1>Success!</h1>';
+$success = "true";
+
+json_encode("success" => $success, "html_to_show" => $return_html);
+
+$.ajax({
+    type: "POST",
+    url: "index.php",
+    data: dataString,
+    cache: false,   
+    dataType: json
+
+    success: function(return_json){
+
+       
+        if(return_json.success == "true")
+        {
+           
+            $("#display").after(return_json.html_to_show);
+        }
+        else
+        {
+            
+            alert("Not a success, no update made");
+        }
+});
